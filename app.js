@@ -42,7 +42,8 @@ async function retweet(){
 }
 
 // loggedUser();
-retweet();
+// Tweet();
+console.log('Refreshed...')
 
 
 // findTweet();
