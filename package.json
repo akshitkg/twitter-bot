@@ -2,10 +2,10 @@
   "name": "twitter-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devServer": "nodemon app.js"
+    "devServer": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "hbs": "^4.2.0",
     "jade": "^1.11.0",
     "twit": "^2.2.11",
     "twitter": "^1.7.1",

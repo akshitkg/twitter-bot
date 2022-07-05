@@ -3,11 +3,18 @@ require("dotenv").config();
 
 // All imports
 const express=require('express')
-
+const path=require('path')
 
 const app=express(); // Get express functionalities
 
 // Middlewares
+app.set('view engine', 'hbs')
+app.set('views', path.join(__dirname, 'views'))
+
+
+// Route Handlers
+app.use('/', require('./routes/handler'))
+
 
 
 // Some code
