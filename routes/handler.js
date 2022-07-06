@@ -1,6 +1,6 @@
 const { default: TweetsClient } = require('twitter-api-client/dist/clients/TweetsClient');
 
-const {Tweet}=require('../controllers/allBotFunctions')
+const {Tweet, SearchTweet}=require('../controllers/allBotFunctions')
 
 const router=require('express').Router();   // Declare express router
 
@@ -25,6 +25,13 @@ router.post('/tweet',(req,res)=>{
     // console.log(req.body.tweet_text);
     Tweet(tweetText);
     res.redirect('/');
+})
+
+router.post('/search-tweet',(req,res)=>{
+    const searchQuery=req.body;
+    // console.log(searchInput)
+    SearchTweet(searchQuery)
+    res.redirect('/')
 })
 
 module.exports=router;

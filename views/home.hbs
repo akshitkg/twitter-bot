@@ -9,10 +9,13 @@
 
 {{!-- Search Tweet form  --}}
 <form action="search-tweet" method="POST">
-    <label for="search_tweet">Search tweet </label>
-    <input id="search_tweet" name="search_tweet" type="text" placeholder="Search tweet" required />
-    <select>
-        <option value="byUser">User</option>
+    <label for="search_input">Search tweet </label>
+    <input id="search_input" name="search_input" type="text" placeholder="Search tweet" required />
+    <label for="select">by</label>
+
+    <select name='search_option' id="select">
+        <option value="byUsername">Username</option>
         <option value="byHashtag">Hashtag</option>
     </select>
+    <button onclick="submit">Search</button>
 </form>
