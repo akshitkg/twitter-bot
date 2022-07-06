@@ -24,9 +24,8 @@ async function SearchTweet(searchQuery){
             const userIdResponse= await rwClient.v2.userByUsername(search_input)
             const userId=userIdResponse.data.id;
             const userTweetsPaginator= await rwClient.v2.userTimeline(userId, {exclude: 'replies'})
-            // const userTweets=userTweetsPaginator.data;
             console.log(userId)
-            // console.log(userTweets)
+            
             while(!userTweetsPaginator.done){
                 const nextPaginatorResponse=await userTweetsPaginator.fetchNext()
                 console.log(nextPaginatorResponse.data)
@@ -50,4 +49,12 @@ async function SearchTweet(searchQuery){
 
 }
 
-module.exports={Tweet, SearchTweet}
+async function Retweet(retweet_hashtag){
+    console.log('Retweet function initiated')
+    const searchResult=await rwClient.v2.search(`#code`, {'max_results':10})
+    const newestTweetId=searchResult.meta.newest_id
+    const myUserId=rwClient.v2.me();
+    rwClient.v2.retweet(myUserId, newestTweetId)
+}
+
+module.exports={Tweet, SearchTweet,Retweet,rwClient}
