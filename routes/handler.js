@@ -24,14 +24,18 @@ router.post('/tweet',(req,res)=>{
     const tweetText=req.body.tweet_text;
     // console.log(req.body.tweet_text);
     Tweet(tweetText);
-    res.redirect('/');
+    res.render('result.hbs');
 })
 
 router.post('/search-tweet',(req,res)=>{
     const searchQuery=req.body;
     // console.log(searchInput)
     SearchTweet(searchQuery)
-    res.redirect('/')
+    res.render('search-result.hbs')
+})
+
+router.get('/result',(req,res)=>{
+    res.send('Done!')
 })
 
 module.exports=router;
