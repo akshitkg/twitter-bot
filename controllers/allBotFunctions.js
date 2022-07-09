@@ -28,7 +28,8 @@ async function SearchTweet(searchQuery){
             
             while(!userTweetsPaginator.done){
                 const nextPaginatorResponse=await userTweetsPaginator.fetchNext()
-                console.log(nextPaginatorResponse.data)
+                console.log(nextPaginatorResponse.data.data)
+                return nextPaginatorResponse.data;
             }
         }catch(e){
             console.log(e)
@@ -40,7 +41,8 @@ async function SearchTweet(searchQuery){
             const tweetsWithHashtagPaginator=await rwClient.v2.search(`#${search_input}`)
             while (!tweetsWithHashtagPaginator.done){
                 const tweetsWithHashtag=await tweetsWithHashtagPaginator.fetchNext();
-                console.log(tweetsWithHashtag.data)
+                console.log(tweetsWithHashtag.data.data)
+                return tweetsWithHashtag.data.data
             }
         }catch(e){
             console.log(e)
