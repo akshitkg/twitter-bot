@@ -1,21 +1,46 @@
 <h3>Twitter Bot</h3>
 
-{{!-- Create tweet form --}}
+{{! Create tweet form }}
 <form action="/tweet" method="POST">
   <label for="tweet_text">Tweet </label>
-    <input id='tweet_text' name="tweet_text" type="text" placeholder="Enter Tweet" required />
+  <input
+    id="tweet_text"
+    name="tweet_text"
+    type="text"
+    placeholder="Enter Tweet"
+    required
+  />
   <button onclick="submit">Tweet</button>
 </form>
 
-{{!-- Search Tweet form  --}}
-<form action="search-tweet" method="POST">
-    <label for="search_input">Search tweet </label>
-    <input id="search_input" name="search_input" type="text" placeholder="Search tweet" required />
-    <label for="select">by</label>
+{{! Search Tweet form  }}
+<form action="/search-tweet" method="POST">
+  <label for="search_input">Search tweet </label>
+  <input
+    id="search_input"
+    name="search_input"
+    type="text"
+    placeholder="Search tweet"
+    required
+  />
+  <label for="select">by</label>
 
-    <select name='search_option' id="select">
-        <option value="byUsername">Username</option>
-        <option value="byHashtag">Hashtag</option>
-    </select>
-    <button onclick="submit">Search</button>
+  <select name="search_option" id="select">
+    <option value="byUsername">Username</option>
+    <option value="byHashtag">Hashtag</option>
+  </select>
+  <button onclick="submit">Search</button>
+</form>
+
+{{! Add Retweet List }}
+<form action="/hashtrack" method="POST">
+  <label for="hashtag_input">Enter Hashtag</label>
+  <input
+    id="hashtag_input"
+    name="hashtag_input"
+    type="text"
+    placeholder="Enter hashtag"
+    required
+  />
+  <button onclick="submit">Track</button>
 </form>

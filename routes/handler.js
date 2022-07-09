@@ -1,8 +1,12 @@
-const { default: TweetsClient } = require('twitter-api-client/dist/clients/TweetsClient');
+const {
+  default: TweetsClient,
+} = require("twitter-api-client/dist/clients/TweetsClient");
 
-const {Tweet, SearchTweet}=require('../controllers/allBotFunctions')
+const { Tweet, SearchTweet } = require("../controllers/allBotFunctions");
 
-const router=require('express').Router();   // Declare express router
+const router = require("express").Router(); // Declare express router
+
+const HashTrackModel = require("../model/hashtrack"); // Hashtag track mongoose model
 
 // const {TwitterApi} =require('twitter-api-v2');  // TwitterApi accessed from twitter-api-v2
 
@@ -16,32 +20,44 @@ const router=require('express').Router();   // Declare express router
 // const rwClient=twitterClient.readWrite;
 
 // router.get('/',require())
-router.get('/',(req,res)=>{
-    res.render('home.hbs')
-})
+router.get("/", (req, res) => {
+  res.render("home.hbs");
+});
 
-router.post('/tweet',(req,res)=>{
-    const tweetText=req.body.tweet_text;
-    // console.log(req.body.tweet_text);
-    const data=Tweet(tweetText);
-    res.render('result.hbs');
-})
+router.post("/tweet", (req, res) => {
+  const tweetText = req.body.tweet_text;
+  // console.log(req.body.tweet_text);
+  const data = Tweet(tweetText);
+  res.render("result.hbs");
+});
 
-router.post('/search-tweet',async (req,res)=>{
-    const searchQuery=req.body;
-    // console.log(searchInput)
-    const data=await SearchTweet(searchQuery)
-    res.render('search-result.hbs', {
-        nice:"hey",
-        post:{
-            title: "Hello"
-        },
-        data: data.data
-    })
-})
+router.post("/search-tweet", async (req, res) => {
+  const searchQuery = req.body;
+  // console.log(searchInput)
+  const data = await SearchTweet(searchQuery);
+  res.render("search-result.hbs", {
+    nice: "hey",
+    post: {
+      title: "Hello",
+    },
+    data: data.data,
+  });
+});
 
-router.get('/result',(req,res)=>{
-    res.send('Done!')
-})
+router.post("/hashtrack", async (req, res) => {
+  const hashtagWithHash = `#${req.body.hashtag}`;
+  const hashTrack = new HashTrackModel({ hashtag: hashtagWithHash });
+  //   const isPresent = HashTrackModel.find({ hashtag: hashtagWithHash });
+  await hashTrack.save();
+  res.send("ok done!");
+  //   if (isPresent) {
+  //     console.log("Already in the tracking list!");
+  //   } else res.send("Saved in database!");
+  // });
+});
 
-module.exports=router;
+router.get("/result", (req, res) => {
+  res.send("Done!");
+});
+
+module.exports = router;
