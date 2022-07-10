@@ -32,10 +32,7 @@ router.post('/search-tweet',async (req,res)=>{
     // console.log(searchInput)
     const data=await SearchTweet(searchQuery)
     res.render('search-result.hbs', {
-        nice:"hey",
-        post:{
-            title: "Hello"
-        },
+        
         data: data.data
     })
 })
